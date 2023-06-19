@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const ClaimsController = require('./controllers/ClaimsController');
+const UserController = require('./controllers/UserController');
 
 dotenv.config();
 
@@ -37,6 +38,10 @@ app.use(express.static('./public'));
 
 // Claims routes
 app.use('/claims', ClaimsController());
+
+//USER routes
+
+app.use('/user', UserController());
 
 // Error handling middleware
 app.use((err, req, res, next) => {
