@@ -24,5 +24,8 @@ let Claims = new Schema({
         type: String
     }
 });
+Claims.statics.findByClaimLocation = function (claimLocation) {
+    return this.find({ ClaimLocation: claimLocation });
+};
 
 module.exports = mongoose.model('claims', Claims);
