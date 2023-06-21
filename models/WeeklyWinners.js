@@ -22,6 +22,9 @@ let WeeklyWinners = new Schema({
     },
     ClaimableItem: {
         type: String
+    },
+    UniquieID: {
+        type: String
     }
 });
 

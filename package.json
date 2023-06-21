@@ -18,6 +18,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.13.7",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.3",
     "puppeteer": "^18.0.5",
     "random-number": "0.0.9",
     "sharp": "^0.31.0",

@@ -22,6 +22,9 @@ let Claims = new Schema({
     },
     ClaimableItem: {
         type: String
+    },
+    WeeklyClaimID: {
+        type: String
     }
 });
 Claims.statics.findByClaimLocation = function (claimLocation) {
