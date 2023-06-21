@@ -433,13 +433,13 @@ module.exports = function () {
       var trasnsporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'mshoradagoda@mun.ca',
-          pass: 'luottkohsuumzwip',
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD,
         }
       })
 
       const mail_configs = {
-        from: 'mshoradagoda@mun.ca',
+        from: process.env.EMAIL,
         to: Email,
         subject: "Congratulations On Winning - Oldtown X Krock Collaboration",
         html: `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
