@@ -384,12 +384,12 @@ module.exports = function () {
   });
 
   router.get('/get-prize', (req, res) => {
-    
+
     newPrize.find()
       .then(savedPrize => {
         console.log('Prize added:', savedPrize);
         // Prize saved successfully
-        
+
 
         const response = {
           status: true,
@@ -408,22 +408,92 @@ module.exports = function () {
   });
 
 
-  router.post('/add-prize', (req, res) => {
-    const Priuze = new newPrize(req.body)
-    Priuze.save()
-      .then(savedPrize => {
-        console.log('Prize added:', savedPrize);
-        // Prize saved successfully
-        res.status(201).send('ok');
-      })
-      .catch(error => {
-        console.error('Failed to add prize:', error);
-        // Handle the error
-        res.status(500).send('error');
+  router.post('/update-prize', async (req, res) => {
+    //const Priuze = new newPrize(req.body)
+    console.log(req.body.NewPrize)
+    try {
+      // Remove all existing records
+      //newPrize.deleteMany();
+      await  newPrize.deleteMany({}, (error) => {
+        if (error) {
+          console.error('Error deleting entries:', error);
+          res.status(500).send('error');
+        } else {
+          console.log('All entries deleted successfully.');
+          res.status(201).send('ok');
+        }
       });
+
+      // Create a new record
+      const newRecord = await   new newPrize({ Prize: req.body.NewPrize });
+      const savedRecord =await   newRecord.save();
+
+      console.log('Data removed and new record added successfully:', savedRecord);
+    } catch (error) {
+      console.error('Error removing data and adding new record:', error);
+    }
+
+  });
+
+
+
+  router.post('/check-login', (req, res) => {
+    console.log(req.body)
+
+    if (req.body.Username == 'Krock') {
+      if (req.body.Password == '2023rock') {
+
+        const response = {
+          status: true,
+          message: 'Krock Login',
+          data: 'KrockLogin'
+        };
+        res.status(201).send(response);
+      } else {
+
+        const response = {
+          status: false,
+          message: 'Invalid',
+          data: 'Invalid'
+        };
+        res.status(201).send(response);
+      }
+    } else {
+
+      if (req.body.Username == 'Oldtown') {
+        if (req.body.Password == '2023old') {
+
+          const response = {
+            status: true,
+            message: 'Oldtonw Login',
+            data: 'OldtonwLogin'
+          };
+          res.status(201).send(response);
+        } else {
+
+          const response = {
+            status: false,
+            message: 'Invalid',
+            data: 'Invalid'
+          };
+          res.status(201).send(response);
+        }
+      } else {
+        const response = {
+          status: false,
+          message: 'Invalid',
+          data: 'Invalid'
+        };
+        res.status(201).send(response);
+
+      }
+
+    }
 
 
   });
+
+
 
 
 
